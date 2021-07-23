@@ -1,4 +1,4 @@
-import { RefreshingAuthProvider } from "@twurple/auth"
+import { AccessToken, RefreshingAuthProvider } from "@twurple/auth"
 import { ChatClient } from "@twurple/chat"
 import { promises as fs } from "fs"
 import dotenv from "dotenv-flow"
@@ -26,7 +26,7 @@ async function main() {
     {
       clientId,
       clientSecret,
-      onRefresh: async (newTokenData) =>
+      onRefresh: async (newTokenData: AccessToken) =>
         await fs.writeFile(
           "./tokens.json",
           JSON.stringify(newTokenData, null, 2),
@@ -52,15 +52,15 @@ async function main() {
       () => {
         console.log("Sent", { message })
       },
-      (reason) => {
+      (reason: string) => {
         console.error("Not sent", { reason })
       }
     )
 
     // Swap amount to prevent duplicated message
     if (amount == 1) {
-      amount = "" // Remove the link for now
-      // amount = "(github.com/narze/autoflip)"
+      // amount = "" // Remove the link for now
+      amount = "1 (github.com/narze/autoflip)"
     } else {
       amount = 1
     }
