@@ -59,7 +59,8 @@ async function main() {
 
     // Swap amount to prevent duplicated message
     if (amount == 1) {
-      amount = "(github.com/narze/autoflip)"
+      amount = "" // Remove the link for now
+      // amount = "(github.com/narze/autoflip)"
     } else {
       amount = 1
     }
