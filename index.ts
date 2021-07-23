@@ -40,34 +40,41 @@ async function main() {
 
   let amount: number | string = 1
 
+  async function run() {
+    if (!running) {
+      return
+    }
+
+    const side = Math.random() > 0.5 ? "h" : "t"
+
+    const message = `!flip ${side} ${amount}`
+    await chatClient.say(channel, message).then(
+      () => {
+        console.log("Sent", { message })
+      },
+      (reason) => {
+        console.error("Not sent", { reason })
+      }
+    )
+
+    // Swap amount to prevent duplicated message
+    if (amount == 1) {
+      amount = "(github.com/narze/autoflip)"
+    } else {
+      amount = 1
+    }
+  }
+
   chatClient.onConnect(async () => {
     console.log("CONNECTED", { channel })
 
-    setInterval(async () => {
-      if (!running) {
-        return
-      }
-
-      const message = `!flip h ${amount}`
-      await chatClient.say(channel, message).then(
-        () => {
-          console.log("Sent", { message })
-        },
-        (reason) => {
-          console.error("Not sent", { reason })
-        }
-      )
-
-      // Swap amount to prevent duplicated message
-      if (amount == 1) {
-        amount = "(github.com/narze/autoflip)"
-      } else {
-        amount = 1
-      }
-    }, flipIntervalMs)
+    setInterval(run, flipIntervalMs)
   })
 
   await chatClient.connect()
+
+  // Run once on start
+  run()
 }
 
 main()
