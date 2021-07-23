@@ -7,7 +7,7 @@ dotenv.config({
   default_node_env: "development",
 })
 
-const gachaIntervalMs = 180 * 1000
+const flipIntervalMs = 180 * 1000
 const stopTime = 2 * 60 * 60 * 1000
 let running = true
 
@@ -48,7 +48,7 @@ async function main() {
         return
       }
 
-      const message = `!gacha ${amount}`
+      const message = `!flip h ${amount}`
       await chatClient.say(channel, message).then(
         () => {
           console.log("Sent", { message })
@@ -60,11 +60,11 @@ async function main() {
 
       // Swap amount to prevent duplicated message
       if (amount == 1) {
-        amount = "(github.com/narze/autogacha)"
+        amount = "(github.com/narze/autoflip)"
       } else {
         amount = 1
       }
-    }, gachaIntervalMs)
+    }, flipIntervalMs)
   })
 
   await chatClient.connect()

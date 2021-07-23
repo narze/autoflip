@@ -1,8 +1,8 @@
 {
-  "name": "autogacha",
+  "name": "autoflip",
   "version": "1.0.0",
   "main": "index.ts",
-  "repository": "https://github.com/narze/autogacha",
+  "repository": "https://github.com/narze/autoflip",
   "author": "narze",
   "license": "MIT",
   "scripts": {

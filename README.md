@@ -1,6 +1,6 @@
-# Autogacha
+# Autoflip
 
-Periodically play `!gacha` on 9arm channel
+Periodically play `!flip` on [Sniffslive](https://www.twitch.tv/sniffslive) channel
 
 ## Setup
 
